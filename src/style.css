@@ -19,8 +19,15 @@ body {
     background-color: var(--color2);
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
 .header {
     display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     flex: 1 1 0;
     justify-content: space-between;
@@ -65,11 +72,16 @@ font-size: clamp(3rem, 4vw, 4rem);
 }
 
 .main-body {
-  width: calc(100%-8rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  width: calc(100vw - 8rem);
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  overflow: auto;
 }
 .main-body .title {
   font-size: var(--size4);
@@ -209,4 +221,11 @@ font-size: clamp(3rem, 4vw, 4rem);
   'wght' 700,
   'GRAD' 0,
   'opsz' 48
+}
+
+.nav-panel {
+  width: clamp(200px, 25vw, 350px);
+  height: 100vh;
+  background-color: var(--color1);
+  color: var(--color2);
 }
