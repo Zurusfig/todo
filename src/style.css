@@ -8,6 +8,7 @@
   --color5: #de3e3e;
   --size4: clamp(3rem, 4vw, 4rem);
   --size2: clamp(1.5rem,2vw,2rem);
+  --size2-5: clamp(1.75rem,2.5vw,2.5rem);
   --size1: clamp(1rem,1vw,1rem);
 }
 
@@ -17,13 +18,132 @@ body {
     font-family: "Figtree",sans-serif;
     letter-spacing: -0.1rem;
     background-color: var(--color2);
+    max-width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+.clickable:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .wrapper {
   display: flex;
   flex-direction: row;
   height: 100vh;
+  min-width: 0;
 }
+
+.nav-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: clamp(200px, 20vw, 250px);
+  background-color: var(--color1);
+  color: var(--color2);
+  z-index: 100;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transform: translateX(0);          /* visible by default */
+  opacity: 1;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.collapsed {
+  transform: translateX(-100%);
+}
+
+.nav-panel .panel-icon{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  color: var(--color2);
+  height: 7rem;
+}
+
+.panel-icon:hover {
+  cursor: pointer;
+}
+
+.nav-panel .panel-icon .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: clamp(3rem, 4vw, 4rem);
+}
+
+.nav-panel .all-tasks {
+  margin-bottom: 1rem;
+  color: var(--color2);
+  font-size: var(--size2-5);
+  font-weight: 900;
+}
+
+.nav-panel .default-list {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color2);
+  font-size: var(--size2-5);
+}
+
+.nav-panel .project-container .project-header {
+  font-size: var(--size2-5);
+  margin-bottom: 0.4rem;
+}
+
+.nav-panel .project-container .rectangle-bar {
+  width: 100%;
+  height: 0.3rem;
+  color: var(--color2);
+  margin-top: -4px;
+  border-style: solid;
+  border-color: var(--white, #f3f3eb);
+  border-width: 0.2rem 0 0 0;
+  position: relative;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+
+.nav-panel .project-container .project-lists {
+  font-size: var(--size2);
+}
+
+.nav-panel .add-project-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.add-project-btn:hover .text {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.add-project-btn .icon {
+  display: flex;
+  justify-content: center;
+}
+
+.add-project-btn .icon .material-symbols-outlined {
+  font-size: var(--size2);
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
 
 .header {
     display: flex;
@@ -32,15 +152,19 @@ body {
     flex: 1 1 0;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 7rem;
     background-color: var(--color3);
     color: var(--color1);
 }
 
 .header .nav-icon {
+  cursor: pointer;
     margin-left: clamp(1rem,4vw,4rem);
     margin-right: clamp(1rem,4vw,4rem);
+    opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .header .nav-icon .material-symbols-outlined {
@@ -76,13 +200,20 @@ font-size: clamp(3rem, 4vw, 4rem);
   flex-direction: column;
   flex: 1;
   min-height: 100vh;
-  width: calc(100vw - 8rem);
+  margin-left: 0;
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   overflow: auto;
+  transition: margin-left 0.3s ease;
 }
+
+.expanded {
+  margin-left: clamp(200px, 20vw, 250px);
+  transition: margin-left 0.3s ease;
+}
+
 .main-body .title {
   font-size: var(--size4);
   display: flex;
@@ -209,6 +340,11 @@ font-size: clamp(3rem, 4vw, 4rem);
   letter-spacing: normal;
 }
 
+.add-task-btn:hover .text {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .add-task-btn .icon {
   display: flex;
   justify-content: center;
@@ -223,9 +359,4 @@ font-size: clamp(3rem, 4vw, 4rem);
   'opsz' 48
 }
 
-.nav-panel {
-  width: clamp(200px, 25vw, 350px);
-  height: 100vh;
-  background-color: var(--color1);
-  color: var(--color2);
-}
+
