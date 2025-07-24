@@ -8,6 +8,30 @@
 
 </head>
 <body>
+    <div class="overlay">
+        <div class="overlay-box">
+            <div class="title">
+                ADD NEW TASK
+            </div>
+            <form id="taskForm" class="form-container">
+                <div class="input-container">
+                        <label for="title">Task Name</label>
+                        <input type="text" name="title" placeholder="Task Name" required />
+                        <label for="description">Task Description</label>
+                        <textarea name="description" placeholder="Task Description"></textarea>
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" name="dueDate" required />
+                        <label for="project">Project</label>
+                        <select name="project" id="project-select" required>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="button1">Add</button>
+                    <button type="button" class="button2">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="wrapper">
     <div class="nav-panel collapsed">
         <div class="panel-icon">
