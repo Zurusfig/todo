@@ -56,7 +56,7 @@ body {
   width: clamp(200px, 20vw, 250px);
   background-color: var(--color1);
   color: var(--color2);
-  z-index: 100;
+  z-index: 50;
   padding-left: 1rem;
   padding-right: 1rem;
   transform: translateX(0);          /* visible by default */
@@ -393,6 +393,7 @@ font-size: clamp(3rem, 4vw, 4rem);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity 0.25s ease;
 }
 
 .overlay .overlay-box {
@@ -458,7 +459,6 @@ font-size: clamp(3rem, 4vw, 4rem);
   transition: background-color 0.2s ease;
 }
 
-
 .overlay .form-container {
   width: 100%;
   display: grid;
@@ -486,8 +486,6 @@ select {
   font-size: var(--size1);
   font-family: "Figtree",sans-serif;
 }
-
-
 
 textarea {
   resize: vertical;
