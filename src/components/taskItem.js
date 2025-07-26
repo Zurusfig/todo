@@ -6,6 +6,7 @@ function initTaskInteractions(){
         const taskCircle = taskItem.querySelector(".task-circle");
         const taskInfo = taskItem.querySelector(".task-info");
         const taskStar = taskItem.querySelector(".task-star");
+        const taskName = taskItem.querySelector(".task-name");
         taskCircle.addEventListener("click", (e) => {
             taskCircle.querySelector(".checked").classList.toggle('display-none');
             taskCircle.querySelector(".unchecked").classList.toggle('display-none');
@@ -13,7 +14,9 @@ function initTaskInteractions(){
         });
 
         taskStar.addEventListener("click", (e) => {
-            taskStar.querySelector(".material-symbols-outlined").classList.toggle("fill-star");
+            taskStar.querySelector(".unfilled-star").classList.toggle('display-none');
+            taskStar.querySelector(".filled-star").classList.toggle('display-none');
+            taskName.querySelector("span").classList.toggle('highlight');
         })
 
     });
