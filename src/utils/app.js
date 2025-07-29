@@ -1,6 +1,4 @@
-const allTasks = []; //adding tasks to allTasks would be done externally (not in class)
-
-class Task {
+export class Task {
     constructor(name,description,dueDate,projectId){
         this.name = name;
         this.description = description;
@@ -31,7 +29,7 @@ class Task {
     }
 }
 
-class Project {
+export class Project {
     constructor(name){
         this.name = name;
         this.tasks = [];
@@ -47,3 +45,5 @@ class Project {
         task.setProject(this.id);
     }
 }
+
+export const allTasks = []; //adding tasks to allTasks would be done externally (not in class)

@@ -1,4 +1,4 @@
-import '../utils/app.js'
+import { Task, Project, allTasks } from '../utils/app.js';
 
 const taskForm = document.getElementById('taskForm');
 
@@ -8,12 +8,25 @@ function handleAddTask(event){
     console.log(Date.now());
     event.preventDefault();
 
-    var taskTitle = document.getElementById("task-title").value;
-    var taskDescription = document.getElementById("task-description").value;
-    var taskDueDate = document.getElementById("task-duedate").value;
-    var taskProject = null;
+    const taskTitle = document.getElementById("task-title");
+    console.log(taskTitle);
+    const taskTitleValue = taskTitle.value;
+    console.log(taskTitleValue);
 
-    const newTask = new Task(taskTitle,taskDescription,taskDueDate,taskProject);
+    const taskDescription = document.getElementById("task-description");
+    console.log(taskDescription);
+    const taskDescriptionValue = taskDescription.value;
+    console.log(taskDescriptionValue);
+    const taskDueDate = document.getElementById("task-duedate");
+    console.log(taskDueDate);
+    const taskDueDateValue = taskDueDate.value;
+    console.log(taskDueDateValue);
+    const taskProject = document.getElementById("project-select");
+    console.log(taskProject);
+    const taskProjectValue = taskProject.value;
+    console.log(taskProjectValue);
+
+    const newTask = new Task(taskTitleValue,taskDescription,taskDueDate,taskProject);
 
     console.log(newTask);
 }
