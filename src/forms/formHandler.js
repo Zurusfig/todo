@@ -36,6 +36,7 @@ function handleAddTask(event){
     overlay.classList.toggle('hidden');
 
     createTaskElement(newTask);
+    allTasks.push(newTask);
 }
 
 export function clearAddTask(){

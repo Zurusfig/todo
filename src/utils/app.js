@@ -1,3 +1,5 @@
+export const allTasks = []; //adding tasks to allTasks would be done externally (not in class)
+
 export class Task {
     constructor(name,description,dueDate,projectId){
         this.name = name;
@@ -27,6 +29,20 @@ export class Task {
     setIsCompleted(isCompleted){
         this.isCompleted = isCompleted;
     }
+    toggleIsCompleted(){
+        if(this.isCompleted == false){
+            this.isCompleted = true;
+        }else {
+            this.isCompleted = false;
+        }
+    }
+    toggleIsImportant(){
+        if(this.isImportant == false){
+            this.isImportant = true;
+        }else {
+            this.isImportant = false;
+        }
+    }
 }
 
 export class Project {
@@ -45,5 +61,3 @@ export class Project {
         task.setProject(this.id);
     }
 }
-
-export const allTasks = []; //adding tasks to allTasks would be done externally (not in class)

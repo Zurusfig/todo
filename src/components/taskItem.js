@@ -1,7 +1,7 @@
 import { Task, Project, allTasks } from '../utils/app.js';
 import { formatDateToDDMMYY, passDue } from '../utils/format.js';
 
-function initSingleTaskInteraction(element){
+function initSingleTaskInteraction(element,task){
         const taskItem = element;
         const taskCircle = taskItem.querySelector(".task-circle");
         const taskInfo = taskItem.querySelector(".task-info");
@@ -11,21 +11,23 @@ function initSingleTaskInteraction(element){
             taskCircle.querySelector(".checked").classList.toggle('display-none');
             taskCircle.querySelector(".unchecked").classList.toggle('display-none');
             taskInfo.classList.toggle("cross-text");
+            task.toggleIsCompleted();
         });
 
         taskStar.addEventListener("click", (e) => {
             taskStar.querySelector(".unfilled-star").classList.toggle('display-none');
             taskStar.querySelector(".filled-star").classList.toggle('display-none');
             taskName.querySelector("span").classList.toggle('highlight');
+            task.toggleIsImportant();
         })
 }
 
 export function initTaskInteractions(){
-    const taskItems = document.querySelectorAll(".task-item");
-
-    taskItems.forEach(element => {
+    if(allTasks.length){
+        allTasks.forEach(element => {
         initSingleTaskInteraction(element);
-    });
+        });
+    }
 }
 
 
@@ -136,8 +138,7 @@ export function createTaskElement(task){
     taskItemElement.appendChild(taskDataElement);
 
 
-    // will be replaced with initSingleTaskInteraction();
-    initSingleTaskInteraction(taskItemElement);
+    initSingleTaskInteraction(taskItemElement,task);
 
 
     const taskList = document.querySelector(".task-list");
