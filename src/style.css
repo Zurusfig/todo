@@ -358,6 +358,7 @@ font-size: clamp(3rem, 4vw, 4rem);
 
 .task-data .task-kebab {
   grid-row: 1/3;
+  cursor: pointer;
 }
 
 .task-data .task-kebab .material-symbols-outlined {
@@ -509,4 +510,85 @@ select {
 textarea {
   resize: vertical;
   min-height: 4rem;
+}
+
+.overlay .edit-box {
+  min-width: 50vw;
+  min-height: 50vh;
+  display: flex;
+  background-color: var(--color2);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: var(--size2);
+}
+
+.overlay .edit-box .title {
+  font-size: var(--size3-o);
+  color: var(--color1);
+  width: 100%;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.overlay .edit-box .buttons {
+  display: flex;
+  width: 100%;
+  gap: var(--size4);
+  justify-content: center;
+  align-items: center;
+  font-size: var(--size2-o);
+  grid-column: 1/3;
+  margin: 0.5em;
+}
+
+.overlay .edit-box .buttons .button1 {
+  background-color: var(--color3);
+  padding: 0.5em;
+  cursor: pointer;
+  text-align: center;
+  width: 6ch;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease;
+}
+
+.overlay .edit-box .buttons .button1:hover {
+  background-color: var(--color4);
+  border: 2px solid var(--color3);
+  transition: background-color 0.2s ease;
+}
+
+.overlay .edit-box .button2 {
+  background-color: var(--color5);
+  padding: 0.5em;
+  cursor: pointer;
+  text-align: center;
+  width: 6ch;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease;
+}
+
+.overlay .edit-box .button2:hover {
+  background-color: var(--color4);
+  border: 2px solid var(--color5);
+  transition: background-color 0.2s ease;
+}
+
+.overlay .edit-box .button3 {
+  background-color: var(--color1);
+  color: var(--color5);
+  padding: 0.5em;
+  cursor: pointer;
+  text-align: center;
+  width: 12ch;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease;
+}
+
+.overlay .edit-box .button3:hover {
+  background-color: var(--color4);
+  border: 2px solid var(--color1);
+  color: var(--color1);
+  transition: background-color 0.2s ease;
 }

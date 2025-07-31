@@ -1,5 +1,6 @@
 import { Task, Project, allTasks } from '../utils/app.js';
 import { formatDateToDDMMYY, passDue } from '../utils/format.js';
+import initOverlayToggle from './modal.js';
 
 function initSingleTaskInteraction(element,task){
         const taskItem = element;
@@ -7,6 +8,7 @@ function initSingleTaskInteraction(element,task){
         const taskInfo = taskItem.querySelector(".task-info");
         const taskStar = taskItem.querySelector(".task-star");
         const taskName = taskItem.querySelector(".task-name");
+        const taskKebab = taskItem.querySelector(".task-kebab");
         taskCircle.addEventListener("click", (e) => {
             taskCircle.querySelector(".checked").classList.toggle('display-none');
             taskCircle.querySelector(".unchecked").classList.toggle('display-none');
@@ -19,6 +21,17 @@ function initSingleTaskInteraction(element,task){
             taskStar.querySelector(".filled-star").classList.toggle('display-none');
             taskName.querySelector("span").classList.toggle('highlight');
             task.toggleIsImportant();
+        });
+
+        taskKebab.addEventListener("click", (e) => {
+            console.log("kebab clicked");
+            const overlay = document.querySelector(".overlay");
+            const addOverlayContainer = document.querySelector(".overcontainer");
+            const editOverlayContainer = document.querySelector(".editcontainer");
+
+            overlay.classList.toggle("hidden");
+            addOverlayContainer.classList.toggle("display-none");
+            editOverlayContainer.classList.toggle("display-none");
         })
 }
 
