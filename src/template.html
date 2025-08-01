@@ -41,19 +41,19 @@
                 <form id="editForm" class="form-container" onsubmit="return false">
                     <div class="input-container">
                             <label for="title">Task Name</label>
-                            <input type="text" name="title" placeholder="Task Name" id="task-title" maxlength="50" required/>
+                            <input type="text" name="title" placeholder="Task Name" id="edit-title" maxlength="50" required/>
                             <label for="description">Task Description</label>
-                            <input type="text" name="description" placeholder="Task Description" id="task-description" maxlength="100"></textarea>
+                            <input type="text" name="description" placeholder="Task Description" id="edit-description" maxlength="100"></textarea>
                             <label for="dueDate">Due Date</label>
-                            <input type="date" name="dueDate" id="task-duedate"/>
+                            <input type="date" name="dueDate" id="edit-duedate"/>
                             <label for="project">Project</label>
-                            <select name="project" id="project-select">
+                            <select name="project" id="edit-select">
                         </select>
                     </div>
                     <div class="buttons">
                         <button type="submit" class="button1">Edit</button>
                         <button type="button" class="button2">Cancel</button>
-                        <button type="button" class="button3">
+                        <button type="button" class="button3" id="delete-btn">
                             DELETE TASK
                         </button>
                     </div>
