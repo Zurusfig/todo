@@ -22,7 +22,7 @@ function handleAddTask(event){
 
     const taskDueDate = document.getElementById("task-duedate");
     console.log(taskDueDate);
-    const taskDueDateValue = taskDueDate.value;
+    const taskDueDateValue = taskDueDate.value || '';
     console.log(taskDueDateValue);
 
     const taskProject = document.getElementById("project-select");

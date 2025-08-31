@@ -9,12 +9,6 @@ function initSingleTaskInteraction(element,task){
         const taskStar = taskItem.querySelector(".task-star");
         const taskName = taskItem.querySelector(".task-name");
         const taskKebab = taskItem.querySelector(".task-kebab");
-        taskCircle.addEventListener("click", (e) => {
-            taskCircle.querySelector(".checked").classList.toggle('display-none');
-            taskCircle.querySelector(".unchecked").classList.toggle('display-none');
-            taskInfo.classList.toggle("cross-text");
-            task.toggleIsCompleted();
-        });
 
         circleInteraction(element,task);
 
@@ -41,9 +35,13 @@ function circleInteraction(element,task){
     const taskItem = element;
     const taskCircle = taskItem.querySelector(".task-circle");
     const taskInfo = taskItem.querySelector(".task-info");
-    taskCircle.addEventListener("click", (e) => {
-            taskCircle.querySelector(".checked").classList.toggle('display-none');
-            taskCircle.querySelector(".unchecked").classList.toggle('display-none');
+    
+    const newTaskCircle = taskCircle.cloneNode(true);
+    taskCircle.parentNode.replaceChild(newTaskCircle, taskCircle);
+    
+    newTaskCircle.addEventListener("click", (e) => {
+            newTaskCircle.querySelector(".checked").classList.toggle('display-none');
+            newTaskCircle.querySelector(".unchecked").classList.toggle('display-none');
             taskInfo.classList.toggle("cross-text");
             task.toggleIsCompleted();
     });
@@ -53,9 +51,13 @@ function starInteraction(element,task){
     const taskItem = element;
     const taskStar = taskItem.querySelector(".task-star");
     const taskName = taskItem.querySelector(".task-name");
-    taskStar.addEventListener("click", (e) => {
-        taskStar.querySelector(".unfilled-star").classList.toggle('display-none');
-        taskStar.querySelector(".filled-star").classList.toggle('display-none');
+    
+    const newTaskStar = taskStar.cloneNode(true);
+    taskStar.parentNode.replaceChild(newTaskStar, taskStar);
+    
+    newTaskStar.addEventListener("click", (e) => {
+        newTaskStar.querySelector(".unfilled-star").classList.toggle('display-none');
+        newTaskStar.querySelector(".filled-star").classList.toggle('display-none');
         taskName.querySelector("span").classList.toggle('highlight');
         task.toggleIsImportant();
     });
@@ -100,6 +102,11 @@ export function createTaskElement(task){
 
         uncheckedCircleElement.appendChild(uncheckedCircleSpan);
         taskCircleElement.appendChild(uncheckedCircleElement);
+        
+        if(task.isCompleted){
+            checkedCircleElement.classList.remove("display-none");
+            uncheckedCircleElement.classList.add("display-none");
+        }
 
         return taskCircleElement;
     }
@@ -125,6 +132,10 @@ export function createTaskElement(task){
     }
     const taskInfoElement = createTaskInfo();
     taskItemElement.appendChild(taskInfoElement);
+    
+    if(task.isCompleted){
+        taskInfoElement.classList.add("cross-text");
+    }
 
     function createTaskData(){
         const taskDataElement = document.createElement("div");
@@ -149,15 +160,26 @@ export function createTaskElement(task){
         filledStarSpan.innerHTML = "star";
         filledStarElement.appendChild(filledStarSpan);
         taskStarElement.appendChild(filledStarElement);
+        
+        if(task.isImportant){
+            unfilledStarElement.classList.add("display-none");
+            filledStarElement.classList.remove("display-none");
+            taskItemElement.querySelector(".task-name span").classList.add('highlight');
+        }
 
         taskDataElement.appendChild(taskStarElement);
 
         const taskDateElement = document.createElement("div");
         taskDateElement.classList.add("task-date");
-        taskDateElement.innerHTML = formatDateToDDMMYY(task.dueDate);
-        if(passDue(task.dueDate)){
-            taskDateElement.classList.add("date-pass-due");
-            taskItemElement.querySelector(".task-name").classList.add("date-pass-due");
+        
+        if(task.dueDate && task.dueDate.trim() !== ''){
+            taskDateElement.innerHTML = formatDateToDDMMYY(task.dueDate);
+            if(passDue(task.dueDate)){
+                taskDateElement.classList.add("date-pass-due");
+                taskItemElement.querySelector(".task-name").classList.add("date-pass-due");
+            }
+        } else {
+            taskDateElement.style.display = 'none';
         }
 
         taskDataElement.appendChild(taskDateElement);
@@ -191,37 +213,53 @@ function updateTaskElement(element,task){
     const taskDescription = taskItem.querySelector(".task-description");
     const taskDateElement = taskItem.querySelector(".task-date");
 
-    taskName.innerHTML = `${task.name}`;
+    taskName.innerHTML = `<span>${task.name}</span>`;
     taskDescription.innerHTML = task.description;
-    taskDateElement.innerHTML = formatDateToDDMMYY(task.dueDate);
+    
+    taskDateElement.classList.remove("date-pass-due");
+    taskName.classList.remove("date-pass-due");
+    
+    if(task.dueDate && task.dueDate.trim() !== ''){
+        taskDateElement.innerHTML = formatDateToDDMMYY(task.dueDate);
+        taskDateElement.style.display = 'block';
+        
         if(passDue(task.dueDate)){
             taskDateElement.classList.add("date-pass-due");
-            taskItemElement.querySelector(".task-name").classList.add("date-pass-due");
+            taskName.classList.add("date-pass-due");
         }
+    } else {
+        taskDateElement.style.display = 'none';
+    }
 }
 
 function editTask(element,task){
     const editForm = document.getElementById("editForm");
     const overlay = document.querySelector(".overlay");
 
-    editForm.addEventListener("submit", (event) => {
+    const newEditForm = editForm.cloneNode(true);
+    editForm.parentNode.replaceChild(newEditForm, editForm);
+    
+    newEditForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        removeItemOnce(allTasks,task);
         
         const taskTitle = document.getElementById("edit-title");
         task.name = taskTitle.value;
 
-        const taskDescription = document.getElementById("task-description");
+        const taskDescription = document.getElementById("edit-description");
         task.description = taskDescription.value;
 
-        const taskDueDate = document.getElementById("task-duedate");
-        task.dueDate = taskDueDate.value;
+        const taskDueDate = document.getElementById("edit-duedate");
+        task.dueDate = taskDueDate.value || ''; // Ensure it's an empty string if undefined
 
-        const taskProject = document.getElementById("project-select");
+        const taskProject = document.getElementById("edit-select");
         task.projectId = taskProject.value;
 
-        allTasks.push(task);
         updateTaskElement(element,task);
+        
+        circleInteraction(element,task);
+        starInteraction(element,task);
+        
+        overlay.classList.toggle("hidden");
     });
 
     const deleteBtn = document.getElementById("delete-btn");
