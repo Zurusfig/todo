@@ -1,3 +1,5 @@
+import { initProjectContainer } from "./projectContainer";
+
 export function initNavBar() {
   const wrapper = document.querySelector(".wrapper");
   const navPanel = document.createElement("div");
@@ -41,37 +43,39 @@ export function initNavBar() {
   completedTask.textContent = "COMPLETED";
   defaultListTab.appendChild(completedTask);
 
-  const projectContainer = document.createElement("div");
-  projectContainer.classList.add("project-container");
-  navPanel.appendChild(projectContainer);
+  // const projectContainer = document.createElement("div");
+  // projectContainer.classList.add("project-container");
+  // navPanel.appendChild(projectContainer);
 
-  const projectHeader = document.createElement("div");
-  projectHeader.classList.add("project-header");
-  projectHeader.textContent = "PROJECTS";
-  projectContainer.appendChild(projectHeader);
+  // const projectHeader = document.createElement("div");
+  // projectHeader.classList.add("project-header");
+  // projectHeader.textContent = "PROJECTS";
+  // projectContainer.appendChild(projectHeader);
 
-  const projectRectBar = document.createElement("div");
-  projectRectBar.classList.add("rectangle-bar");
-  projectContainer.appendChild(projectRectBar);
+  // const projectRectBar = document.createElement("div");
+  // projectRectBar.classList.add("rectangle-bar");
+  // projectContainer.appendChild(projectRectBar);
 
-  const projectLists = document.createElement("div");
-  projectLists.classList.add("project-lists");
-  projectContainer.appendChild(projectLists);
+  // const projectLists = document.createElement("div");
+  // projectLists.classList.add("project-lists");
+  // projectContainer.appendChild(projectLists);
 
-  // potentially add project lists here later
+  // // potentially add project lists here later
 
-  const addProjectBtn = document.createElement("div");
-  addProjectBtn.classList.add("add-project-btn");
-  const addIcon = document.createElement("span");
-  addIcon.classList.add("material-symbols-outlined");
-  addIcon.textContent = "add_circle";
-  addProjectBtn.appendChild(addIcon);
-  const addText = document.createElement("div");
-  addText.classList.add("text");
-  addText.textContent = "ADD PROJECT";
-  addProjectBtn.appendChild(addText);
+  // const addProjectBtn = document.createElement("div");
+  // addProjectBtn.classList.add("add-project-btn");
+  // const addIcon = document.createElement("span");
+  // addIcon.classList.add("material-symbols-outlined");
+  // addIcon.textContent = "add_circle";
+  // addProjectBtn.appendChild(addIcon);
+  // const addText = document.createElement("div");
+  // addText.classList.add("text");
+  // addText.textContent = "ADD PROJECT";
+  // addProjectBtn.appendChild(addText);
 
-  projectContainer.appendChild(addProjectBtn);
+  // projectContainer.appendChild(addProjectBtn);
+  initProjectContainer(navPanel);
+
 
   console.log("nav bar initiated");
 }
