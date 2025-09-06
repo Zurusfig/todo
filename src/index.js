@@ -3,6 +3,7 @@ import initNavToggle, { initNavBar } from './components/nav.js';
 import { initTaskInteractions, createTaskElement } from './components/taskItem.js';
 import { initOverlayToggle } from './components/modal.js'
 import './forms/formHandler.js';
+import './forms/projectHandler.js';
 import { allTasks } from './utils/app.js';
 
 // initNavBar();
