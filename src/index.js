@@ -5,7 +5,7 @@ import { initOverlayToggle } from './components/modal.js'
 import './forms/formHandler.js';
 import { allTasks } from './utils/app.js';
 
-initNavBar();
+// initNavBar();
 
 initNavToggle();
 

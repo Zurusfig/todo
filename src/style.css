@@ -135,6 +135,45 @@ body {
   font-size: var(--size2);
 }
 
+.project-form-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-form-container .project-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color1);
+}
+
+.project-form-container .project-form input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: var(--color4);
+  border: 2px solid var(--color2);
+  font-size: var(--size1-5-o);
+  font-family: "Figtree",sans-serif;
+  color: var(--color4);
+  background-color: var(--color1);
+}
+
+.project-button {
+  color: var(--color2);
+  font-size: var(--size1-5-o);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease;
+}
+
+.project-button:hover {
+  border: 2px solid var(--color2);
+  transition: background-color 0.2s ease;
+}
+
 .nav-panel .add-project-btn {
   display: flex;
   justify-content: center;

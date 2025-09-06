@@ -4,7 +4,6 @@ import { Task,Project,allTasks } from "../utils/app";
 export function initOverlayToggle(){
     const addTaskBtn = document.querySelector(".add-task-btn");
     const overlay = document.querySelector(".overlay");
-    const overlayCancelBtn = document.querySelectorAll(".button2"); // cancel button
 
     addTaskBtn.addEventListener("click", (e) => {
         clearAddTask();
@@ -13,16 +12,19 @@ export function initOverlayToggle(){
         document.querySelector(".editcontainer").classList.add("display-none");
     });
 
-    overlayCancelBtn.forEach(element => {
-        element.addEventListener("click",(e) => {
+    // Event delegation for cancel buttons in overlay
+    overlay.addEventListener("click", (e) => {
+        if (e.target.classList.contains("button2")) {
             overlay.classList.toggle("hidden");
-        })
-    })
+        }
+    });
 
     const editButton = document.querySelector(".edit-box .button1");
-    editButton.addEventListener("click", (e) => {
-    overlay.classList.toggle("hidden");
-})
+    if (editButton) {
+        editButton.addEventListener("click", (e) => {
+            overlay.classList.toggle("hidden");
+        });
+    }
 
 }
 
@@ -40,3 +42,4 @@ export function loadEditModal(task){
     const taskProject = document.getElementById("edit-select");
     taskProject.value = task.projectId; //have to change this
 }
+
