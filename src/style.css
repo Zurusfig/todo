@@ -135,6 +135,18 @@ body {
   font-size: var(--size2);
 }
 
+.project-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-kebab {
+  font-size: var(--size2);
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+
 .project-form-container {
   margin-top: 1rem;
   margin-bottom: 1rem;

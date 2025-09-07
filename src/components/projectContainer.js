@@ -36,7 +36,7 @@ export function initProjectContainer(navPanel) {
 export function addProjectToList(projectName) {
   const projectLists = document.querySelector(".project-lists");
   const newProject = document.createElement("div");
-  newProject.classList.add("list", "clickable");
+  newProject.classList.add("project-list-item", "clickable");
   newProject.textContent = projectName;
   projectLists.appendChild(newProject);
 }
