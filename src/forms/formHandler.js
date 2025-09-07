@@ -52,3 +52,17 @@ export function clearAddTask(){
     const taskProject = document.getElementById("project-select");
     taskProject.value = "";
 }
+
+import { allProjects } from '../utils/app.js';
+
+export function renderProjectDropdown() {
+    const select = document.getElementById('project-select');
+    if (!select) return;
+    select.innerHTML = '';
+    allProjects.forEach(project => {
+        const option = document.createElement('option');
+        option.value = project.id || project.name; // use id if available
+        option.textContent = project.name;
+        select.appendChild(option);
+    });
+}
