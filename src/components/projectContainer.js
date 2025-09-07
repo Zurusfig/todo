@@ -32,3 +32,11 @@ export function initProjectContainer(navPanel) {
 
   projectContainer.appendChild(addProjectBtn);
 }
+
+export function addProjectToList(projectName) {
+  const projectLists = document.querySelector(".project-lists");
+  const newProject = document.createElement("div");
+  newProject.classList.add("list", "clickable");
+  newProject.textContent = projectName;
+  projectLists.appendChild(newProject);
+}

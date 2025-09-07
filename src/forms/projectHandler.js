@@ -1,3 +1,4 @@
+import { addProjectToList } from '../components/projectContainer.js';
 import { Project, allProjects } from '../utils/app.js';
 
 const projectForm = document.getElementById('projectForm');
@@ -25,4 +26,5 @@ function handleAddProject(event){
     
     console.log("Project added:", newProject);
     console.log("All projects:", allProjects);
+    addProjectToList(projectNameValue);
 }
