@@ -1,5 +1,7 @@
+import { allProjects } from '../utils/models.js';
+
 import { createTaskElement } from '../components/taskItem.js';
-import { Task, Project, allTasks } from '../utils/app.js';
+import { Task, Project, allTasks } from '../utils/models.js';
 
 const taskForm = document.getElementById('taskForm');
 const overlay = document.querySelector(".overlay");
@@ -39,6 +41,7 @@ function handleAddTask(event){
     allTasks.push(newTask);
 }
 
+
 export function clearAddTask(){
     const taskTitle = document.getElementById("task-title");
     taskTitle.value = "";
@@ -51,18 +54,4 @@ export function clearAddTask(){
     
     const taskProject = document.getElementById("project-select");
     taskProject.value = "";
-}
-
-import { allProjects } from '../utils/app.js';
-
-export function renderProjectDropdown() {
-    const select = document.getElementById('project-select');
-    if (!select) return;
-    select.innerHTML = '';
-    allProjects.forEach(project => {
-        const option = document.createElement('option');
-        option.value = project.id || project.name; // use id if available
-        option.textContent = project.name;
-        select.appendChild(option);
-    });
 }

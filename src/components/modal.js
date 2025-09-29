@@ -1,7 +1,8 @@
 import { clearAddTask } from "../forms/formHandler";
-import { Task,Project,allTasks } from "../utils/app";
+import { Task,Project,allTasks } from "../utils/models";
 
-export function initOverlayToggle(){
+// Initialize modal controls for adding and editing tasks
+export function initModalControls(){
     const addTaskBtn = document.querySelector(".add-task-btn");
     const overlay = document.querySelector(".overlay");
 
@@ -39,7 +40,6 @@ export function loadEditModal(task){
     const taskDueDate = document.getElementById("edit-duedate");
     taskDueDate.value = task.dueDate;
 
-    const taskProject = document.getElementById("edit-select");
+    const taskProject = document.getElementById("edit-project-select");
     taskProject.value = task.projectId; //have to change this
 }
-

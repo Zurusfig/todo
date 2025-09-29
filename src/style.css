@@ -145,6 +145,50 @@ body {
   font-size: var(--size2);
   cursor: pointer;
   margin-top: 0.4rem;
+  position: relative;
+}
+
+.project-popup-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--color2);
+  border: 2px solid var(--color1);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  min-width: 120px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+.project-popup-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.project-popup-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: var(--size1-5-o);
+  color: var(--color1);
+  transition: background-color 0.2s ease;
+}
+
+.project-popup-item:hover {
+  background-color: var(--color4);
+}
+
+.project-popup-item.delete {
+  color: var(--color5);
+}
+
+.project-popup-item.delete:hover {
+  background-color: rgba(222, 62, 62, 0.1);
 }
 
 .project-form-container {

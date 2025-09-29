@@ -1,4 +1,4 @@
-import { Task, Project, allTasks } from '../utils/app.js';
+import { Task, Project, allTasks } from '../utils/models.js';
 import { formatDateToDDMMYY, passDue, removeItemOnce } from '../utils/format.js';
 import initOverlayToggle, { loadEditModal } from './modal.js';
 
