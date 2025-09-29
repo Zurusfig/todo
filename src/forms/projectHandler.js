@@ -1,10 +1,24 @@
 import { addProjectToList } from '../components/projectContainer.js';
 import { Project, allProjects } from '../utils/app.js';
-import { renderProjectDropdown } from './formHandler.js';
 
 const projectForm = document.getElementById('projectForm');
 
 projectForm.addEventListener('submit', handleAddProject);
+
+ function renderProjectDropdowns() {
+    const selects = [document.getElementById('project-select'), document.getElementById('edit-project-select')];
+    selects.forEach(select => {
+        if (!select) return;
+        select.innerHTML = '';
+        allProjects.forEach(project => {
+            const option = document.createElement('option');
+            option.value = project.id || project.name;
+            option.textContent = project.name;
+            select.appendChild(option);
+        });
+    });
+}
+
 
 function handleAddProject(event){
     console.log("add project clicked");
@@ -28,5 +42,5 @@ function handleAddProject(event){
     console.log("Project added:", newProject);
     console.log("All projects:", allProjects);
     addProjectToList(projectNameValue);
-    renderProjectDropdown();
+    renderProjectDropdowns();
 }
